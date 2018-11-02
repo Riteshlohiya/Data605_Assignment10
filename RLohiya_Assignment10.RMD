@@ -1,0 +1,54 @@
+---
+title: "RLohiya Assignment10"
+author: "Ritesh Lohiya"
+date: "November 1, 2018"
+output: html_document
+---
+
+#                             ASSIGNMENT 10
+
+#           IS 605 FUNDAMENTALS OF COMPUTATIONAL MATHEMATICS
+
+Smith is in jail and has 1 dollar; he can get out on bail if he has 8 dollars. A guard agrees to make a series of bets with him. If Smith bets A dollars,
+he wins A dollars with probability .4 and loses A dollars with probability .6. 
+
+Find the probability that he wins 8 dollars before losing all of his money if
+
+(a) he bets 1 dollar each time (timid strategy).
+
+```{r}
+a <- 0.4
+b <- 0.6
+c <- b/a
+
+
+for (i in 0:8){
+p <- round((1-c^i)/(1-c^8),4)
+print(p)
+}
+```
+
+P is 0.0203
+
+
+(b) he bets, each time, as much as possible but not more than necessary to bring his fortune up to 8 dollars (bold strategy).
+
+```{r}
+s <- matrix(c(1,0.6,0.6,0.6,0,0,0,0,0,0,0,0.4,0,0,0,0,0,0.4,0,0,0,0,0,0.4,1),nrow = 5, byrow=FALSE)
+s
+
+s1 <- matrix(c(0,1,0,0,0),nrow=1)
+s1
+
+s2 <- s1 %*% s
+s2
+
+
+s3 <- s2 %*% s
+s4 <- s3 %*% s
+s4
+
+```
+(c) Which strategy gives Smith the better chance of getting out of jail?
+
+Answer: bold strategy gives Smith the better chance of getting out of jail
